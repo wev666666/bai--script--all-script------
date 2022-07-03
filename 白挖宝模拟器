@@ -1,0 +1,174 @@
+
+
+local wabao = Instance.new("ScreenGui")
+local Main = Instance.new("Frame")
+local biaoti = Instance.new("TextLabel")
+local Close = Instance.new("TextButton")
+local autofarm = Instance.new("TextButton")
+local autorest = Instance.new("TextButton")
+local ToolBox = Instance.new("TextLabel")
+
+
+wabao.Name = "wabao"
+wabao.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+
+Main.Name = "Main"
+Main.Parent = wabao
+Main.BackgroundColor3 = Color3.fromRGB(85, 255, 255)
+Main.Position = UDim2.new(0, 0, 0.0468749963, 0)
+Main.Size = UDim2.new(0, 132, 0, 155)
+Main.Active = true
+Main.Draggable = true
+local Character = game.Workspace:WaitForChild(game.Players.LocalPlayer.Name)
+biaoti.Name = "biaoti"
+biaoti.Parent = Main
+biaoti.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+biaoti.Size = UDim2.new(0, 96, 0, 37)
+biaoti.Font = Enum.Font.SourceSans
+biaoti.TextColor3 = Color3.fromRGB(0, 0, 0)
+biaoti.TextSize = 14.000
+biaoti.Text="白V0.9"
+function Sell()
+	local OldPos = Character.HumanoidRootPart.CFrame
+	Character.HumanoidRootPart.CFrame = CFrame.new(3, 10, -160)
+	game.ReplicatedStorage.Events.AreaSell:FireServer()
+	wait(0.1)
+	Character.HumanoidRootPart.CFrame = OldPos
+end
+Close.Name = "Close"
+Close.Parent = Main
+Close.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Close.Position = UDim2.new(0.727272749, 0, 0, 0)
+Close.Size = UDim2.new(0, 36, 0, 37)
+Close.Font = Enum.Font.SourceSans
+Close.TextColor3 = Color3.fromRGB(0, 0, 0)
+Close.TextSize = 14.000
+Close.Text = "X"
+Close.MouseButton1Click:Connect(function()
+	wabao:Destroy()
+end)
+autofarm.Name = "autofarm"
+autofarm.Parent = Main
+autofarm.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+autofarm.Position = UDim2.new(0, 0, 0.248322144, 0)
+autofarm.Size = UDim2.new(0, 132, 0, 38)
+autofarm.Font = Enum.Font.SourceSans
+autofarm.TextColor3 = Color3.fromRGB(0, 0, 0)
+autofarm.TextSize = 14.000
+autofarm.Text="自动挖宝（关）"
+
+autofarm.MouseButton1Click:Connect(function()
+    
+	if autofarm.Text=="自动挖宝（关）" then
+		autofarm.Text="自动挖宝（开）"
+else autofarm.Text="自动挖宝（关）"
+	end
+	   if game.Players.LocalPlayer.Character:FindFirstChild(ToolBox.Text) then
+			print('Already EquipTool')
+		else
+            game.Players.LocalPlayer.Character.Humanoid:EquipTool(game.Players.LocalPlayer.Backpack[ToolBox.Text])
+        end
+	while wait() do
+	wait()
+	if autofarm.Text=="自动挖宝（开）" then
+		local Sand = nil
+		local SandName = ""
+		for i,v in pairs (game.Workspace.SandBlocks:GetChildren()) do
+			if autofarm.Text=="自动挖宝（关）" then 
+				Sell()
+				break 
+			end
+			if v:FindFirstChild("Chest") then
+				if v.CFrame.X > -40 and v.CFrame.X < 20 and v.CFrame.Z < -175 and v.CFrame.Z > -235 then
+					local Next = false
+					if v == nil then
+						Next = false
+					else
+						Next = true
+						Sand = v
+						SandName = v.Name
+					end
+					if Next == true then
+						local Success,Problem = pcall(function()
+							if game.Players[game.Players.LocalPlayer.Name].PlayerGui.Gui.Popups.BackpackFull.Visible == true then Sell() end
+							Sand.CanCollide = false
+							local Coins = game.Players.LocalPlayer.PlayerGui.Gui.Buttons.Coins.Amount.Text
+							repeat
+								if game.Players[game.Players.LocalPlayer.Name].PlayerGui.Gui.Popups.BackpackFull.Visible == true then Sell() end
+								if autofarm.Text=="自动挖宝（关）" then 
+									wait(.1)
+									Character.HumanoidRootPart.CFrame = CFrame.new(3, 10, -160)
+									wait(1)
+									break 
+								end
+								Character.HumanoidRootPart.Anchored = true
+								wait()
+								Character.HumanoidRootPart.CFrame = Sand.CFrame
+								wait()
+								Character.HumanoidRootPart.Anchored = false
+								Character:WaitForChild(ToolBox.Text)['RemoteClick']:FireServer(game.Workspace.SandBlocks[SandName])
+								wait()
+							until game.Players.LocalPlayer.PlayerGui.Gui.Buttons.Coins.Amount.Text ~= Coins
+							Next = false
+						end)
+						if Success then
+							print('Worked')
+						else
+							warn(Problem)
+						end
+					end
+				end
+			end
+		end
+		end
+		end
+end)
+
+
+
+
+autorest.Name = "autorest"
+autorest.Parent = Main
+autorest.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+autorest.Position = UDim2.new(0, 0, 0.490452528, 0)
+autorest.Size = UDim2.new(0, 132, 0, 39)
+autorest.Font = Enum.Font.SourceSans
+autorest.TextColor3 = Color3.fromRGB(0, 0, 0)
+autorest.TextSize = 14.000
+autorest.Text="自动重生（关）"
+autorest.MouseButton1Click:Connect(function()
+	if autorest.Text=="自动重生（关）" then
+		autorest.Text="自动重生（开）"
+	else autorest.Text="自动重生（关）"
+	end
+	while wait() do
+	wait(1)
+		if 	autorest.Text=="自动重生（开）"then
+		local a = game.Players.LocalPlayer.PlayerGui.Gui.Buttons.Coins.Amount.Text:gsub(',','')
+		local b = game.Players.LocalPlayer.PlayerGui.Gui.Rebirth.Needed.Coins.Amount.Text:gsub(',','')
+		print(tonumber(a))
+		print(tonumber(b))
+		if tonumber(a) > tonumber(b) then 
+			warn('Calculation Complete!')
+			game.ReplicatedStorage.Events.Rebirth:FireServer()
+			ToolBox.Text = "Bucket"
+			repeat wait(.1) until game.Players.LocalPlayer.PlayerGui.Gui.Popups.GiveReward.Visible == true
+			game.Players.LocalPlayer.PlayerGui.Gui.Popups.GiveReward.Visible = false
+			wait()
+		end
+	end
+	end
+	
+end)
+ToolBox.Name = "ToolBox"
+ToolBox.Parent = Main
+ToolBox.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+ToolBox.Position = UDim2.new(0, 0, 0.741935492, 0)
+ToolBox.Size = UDim2.new(0, 132, 0, 40)
+ToolBox.Font = Enum.Font.SourceSans
+ToolBox.TextColor3 = Color3.fromRGB(0, 0, 0)
+ToolBox.TextSize = 14.000
+while wait() do
+	ToolBox.Text = game.Players.LocalPlayer.Backpack:FindFirstChildOfClass("Tool").Name
+	
+end
