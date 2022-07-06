@@ -1,0 +1,102 @@
+local ScreenGui = Instance.new("ScreenGui")
+local Main = Instance.new("Frame")
+local biaoti = Instance.new("TextLabel")
+local Close = Instance.new("TextButton")
+local bisai = Instance.new("TextButton")
+
+--Properties:
+
+ScreenGui.Parent = game.CoreGui
+
+Main.Name = "Main"
+Main.Parent = ScreenGui
+Main.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Main.Position = UDim2.new(0, 0, -0.00312498817, 0)
+Main.Size = UDim2.new(0, 163, 0, 76)
+Main.Active = true
+Main.Draggable = true
+biaoti.Name = "biaoti"
+biaoti.Parent = Main
+biaoti.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+biaoti.Size = UDim2.new(0, 129, 0, 38)
+biaoti.Font = Enum.Font.SourceSans
+biaoti.TextColor3 = Color3.fromRGB(0, 0, 0)
+biaoti.TextSize = 14.000
+biaoti.Text="白V0.9"
+Close.Name = "Close"
+Close.Parent = Main
+Close.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Close.Position = UDim2.new(0.791411042, 0, 0, 0)
+Close.Size = UDim2.new(0, 34, 0, 38)
+Close.Font = Enum.Font.SourceSans
+Close.TextColor3 = Color3.fromRGB(0, 0, 0)
+Close.TextSize = 14.000
+Close.Text="X"
+Close.MouseButton1Click:Connect(function()
+	ScreenGui:Destroy()
+end)
+bisai.Name = "bisai"
+bisai.Parent = Main
+bisai.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+bisai.Position = UDim2.new(0, 0, 0.5, 0)
+bisai.Size = UDim2.new(0, 163, 0, 38)
+bisai.Font = Enum.Font.SourceSans
+bisai.TextColor3 = Color3.fromRGB(0, 0, 0)
+bisai.TextSize = 14.000
+bisai.Text="自动拿钱（关）"
+--// Services
+local players = game:GetService("Players")
+--// Workspace
+local stages = workspace:WaitForChild("BoatStages"):WaitForChild("NormalStages")
+local penguin, gold = workspace:WaitForChild("ChangeCharacter"), workspace:WaitForChild("ClaimRiverResultsGold")
+--// Other
+local client = players.LocalPlayer
+
+bisai.MouseButton1Click:Connect(function()
+	if bisai.Text=="自动拿钱（关）" then
+		bisai.Text="自动拿钱（开）"
+	else bisai.Text="自动拿钱（关）"
+		
+	end
+
+while bisai.Text=="自动拿钱（开）"do
+local bodyVelocity = Instance.new("BodyVelocity")
+bodyVelocity.Velocity = Vector3.new(0, -4, 0)
+bodyVelocity.Parent = client.Character.HumanoidRootPart
+for i = 1, 9 do
+    if not client.Character or not client.Character:FindFirstChild("Humanoid") then
+        repeat wait() until client.Character and client.Character:FindFirstChild("Humanoid")
+    end
+    client.Character.HumanoidRootPart.CFrame = stages["CaveStage"..i].DarknessPart.CFrame wait(0.1)
+    if  bisai.Text=="自动拿钱（关）" then
+        client.Character.Humanoid.Health = 0
+        exit(0)
+    end
+    if i == 1 then
+        wait(4)
+    else
+        wait(2)
+    end
+    gold:FireServer()
+end
+end
+	
+end)
+local function notify(title,text,time)
+	game.StarterGui:SetCore("SendNotification", {
+		Title = title;
+		Text = text;
+		Icon = nil;
+		Duration = time
+	})
+end
+local function AntiAFK()
+    game:GetService('Players').LocalPlayer.Idled:Connect(function()
+        notify('反挂机', '反挂机已生效', 4)
+        game:GetService('VirtualUser'):Button2Down(Vector2.new(0, 0), game:GetService('Workspace').CurrentCamera.CFrame);
+        wait(.325)
+        game:GetService('VirtualUser'):Button2Up(Vector2.new(0, 0), game:GetService('Workspace').CurrentCamera.CFrame);
+    end);
+end;
+AntiAFK();
+notify('反挂机', '反挂机已开启', 4)
