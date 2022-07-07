@@ -1,0 +1,337 @@
+-- Gui to Lua
+-- Version: 3.2
+
+-- Instances:
+
+local ScreenGui = Instance.new("ScreenGui")
+local Frame = Instance.new("Frame")
+local yes = Instance.new("TextButton")
+local no = Instance.new("TextButton")
+local TextLabel = Instance.new("TextLabel")
+
+--Properties:
+
+ScreenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+
+Frame.Parent = ScreenGui
+Frame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Frame.Position = UDim2.new(0.364583313, 0, 0.268750012, 0)
+Frame.Size = UDim2.new(0, 200, 0, 100)
+Frame.Active = true
+Frame.Draggable = true
+
+yes.Name = "yes"
+yes.Parent = Frame
+yes.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+yes.Position = UDim2.new(0, 0, 0.5, 0)
+yes.Size = UDim2.new(0, 96, 0, 50)
+yes.Font = Enum.Font.SourceSans
+yes.TextColor3 = Color3.fromRGB(0, 0, 0)
+yes.TextSize = 14.000
+yes.Text="加载"
+yes.MouseButton1Click:Connect(function()
+	ScreenGui:Destroy()	
+	-- Version: 3.2
+
+	-- Instances:
+
+	local ScreenGui = Instance.new("ScreenGui")
+	local Main = Instance.new("Frame")
+	local biaoti = Instance.new("TextLabel")
+	local Close = Instance.new("TextButton")
+	local sudu = Instance.new("TextBox")
+	local yinyonsudu = Instance.new("TextButton")
+	local yytiaoy = Instance.new("TextButton")
+	local feixing = Instance.new("TextButton")
+	local wuxianty = Instance.new("TextButton")
+	local toshi = Instance.new("TextButton")
+
+	--Properties:
+
+	ScreenGui.Parent =game.Players.LocalPlayer:WaitForChild("PlayerGui")
+
+	Main.Name = "Main"
+	Main.Parent = ScreenGui
+	Main.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	Main.Size = UDim2.new(0, 152, 0, 225)
+	Main.Active = true
+	Main.Draggable = true
+	biaoti.Name = "biaoti"
+	biaoti.Parent = Main
+	biaoti.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	biaoti.Size = UDim2.new(0, 114, 0, 38)
+	biaoti.Font = Enum.Font.SourceSans
+	biaoti.Text = "白V0.9"
+	biaoti.TextColor3 = Color3.fromRGB(0, 0, 0)
+	biaoti.TextSize = 14.000
+
+	Close.Name = "Close"
+	Close.Parent = Main
+	Close.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	Close.Position = UDim2.new(0.75, 0, 0, 0)
+	Close.Size = UDim2.new(0, 38, 0, 38)
+	Close.Font = Enum.Font.SourceSans
+	Close.Text = "X"
+	Close.TextColor3 = Color3.fromRGB(0, 0, 0)
+	Close.TextSize = 14.000
+	Close.MouseButton1Click:Connect(function()
+		ScreenGui:Destroy()
+	end)
+	sudu.Name = "sudu"
+	sudu.Parent = Main
+	sudu.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	sudu.Position = UDim2.new(0, 0, 0.168205053, 0)
+	sudu.Size = UDim2.new(0, 152, 0, 36)
+	sudu.Font = Enum.Font.SourceSans
+	sudu.Text = "速度/跳跃提升"
+	sudu.TextColor3 = Color3.fromRGB(0, 0, 0)
+	sudu.TextSize = 14.000
+
+	yinyonsudu.Name = "yinyonsudu"
+	yinyonsudu.Parent = Main
+	yinyonsudu.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	yinyonsudu.Position = UDim2.new(0, 0, 0.326408774, 0)
+	yinyonsudu.Size = UDim2.new(0, 75, 0, 38)
+	yinyonsudu.Font = Enum.Font.SourceSans
+	yinyonsudu.Text = "应用速度"
+	yinyonsudu.TextColor3 = Color3.fromRGB(0, 0, 0)
+	yinyonsudu.TextSize = 14.000
+	yinyonsudu.MouseButton1Click:Connect(function()
+		game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = sudu.Text
+
+	end)
+	yytiaoy.Name = "yytiaoy"
+	yytiaoy.Parent = Main
+	yytiaoy.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	yytiaoy.Position = UDim2.new(0.493421048, 0, 0.326408774, 0)
+	yytiaoy.Size = UDim2.new(0, 77, 0, 38)
+	yytiaoy.Font = Enum.Font.SourceSans
+	yytiaoy.Text = "应用跳跃"
+	yytiaoy.TextColor3 = Color3.fromRGB(0, 0, 0)
+	yytiaoy.TextSize = 14.000
+	yytiaoy.MouseButton1Click:Connect(function()
+
+		game.Players.LocalPlayer.Character.Humanoid.JumpPower =sudu.Text
+	end)
+	feixing.Name = "feixing"
+	feixing.Parent = Main
+	feixing.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	feixing.Position = UDim2.new(0, 0, 0.494613826, 0)
+	feixing.Size = UDim2.new(0, 152, 0, 40)
+	feixing.Font = Enum.Font.SourceSans
+	feixing.Text = "飞行"
+	feixing.TextColor3 = Color3.fromRGB(0, 0, 0)
+	feixing.TextSize = 14.000
+	feixing.MouseButton1Click:Connect(function()
+		loadstring("\108\111\97\100\115\116\114\105\110\103\40\103\97\109\101\58\72\116\116\112\71\101\116\40\40\39\104\116\116\112\115\58\47\47\103\105\115\116\46\103\105\116\104\117\98\117\115\101\114\99\111\110\116\101\110\116\46\99\111\109\47\109\101\111\122\111\110\101\89\84\47\98\102\48\51\55\100\102\102\57\102\48\97\55\48\48\49\55\51\48\52\100\100\100\54\55\102\100\99\100\51\55\48\47\114\97\119\47\101\49\52\101\55\52\102\52\50\53\98\48\54\48\100\102\53\50\51\51\52\51\99\102\51\48\98\55\56\55\48\55\52\101\98\51\99\53\100\50\47\97\114\99\101\117\115\37\50\53\50\48\120\37\50\53\50\48\102\108\121\37\50\53\50\48\50\37\50\53\50\48\111\98\102\108\117\99\97\116\111\114\39\41\44\116\114\117\101\41\41\40\41\10\10")()
+	end)
+
+	wuxianty.Name = "wuxianty"
+	wuxianty.Parent = Main
+	wuxianty.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	wuxianty.Position = UDim2.new(0, 0, 0.66874373, 0)
+	wuxianty.Size = UDim2.new(0, 152, 0, 38)
+	wuxianty.Font = Enum.Font.SourceSans
+	wuxianty.Text = "无限跳跃（关）"
+	wuxianty.TextColor3 = Color3.fromRGB(0, 0, 0)
+	wuxianty.TextSize = 14.000
+
+	wuxianty.MouseButton1Click:Connect(function()
+		if wuxianty.Text == "无限跳跃（关）"  then
+			local toggle=true
+
+			wuxianty.Text = "无限跳跃（开）"
+		else 
+			local toggle=false
+
+			wuxianty.Text = "无限跳跃（关）"
+		end
+
+		if wuxianty.Text== "无限跳跃（开）" then
+			InfiniteJumpEnabled = true
+			game:GetService("UserInputService").JumpRequest:connect(function()
+				if InfiniteJumpEnabled then
+					game:GetService"Players".LocalPlayer.Character:FindFirstChildOfClass'Humanoid':ChangeState("Jumping")
+					InfiniteJumpEnabled = true
+				end
+			end)
+
+		else
+			InfiniteJumpEnabled = false
+			game:GetService("UserInputService").JumpRequest:connect(function()
+				if InfiniteJumpEnabled then
+					game:GetService"Players".LocalPlayer.Character:FindFirstChildOfClass'Humanoid':ChangeState("Jumping")
+
+				end
+			end)
+		end
+	end)
+
+	toshi.Name = "toshi"
+	toshi.Parent = Main
+	toshi.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	toshi.Position = UDim2.new(0, 0, 0.835555553, 0)
+	toshi.Size = UDim2.new(0, 152, 0, 37)
+	toshi.Font = Enum.Font.SourceSans
+	toshi.TextColor3 = Color3.fromRGB(0, 0, 0)
+	toshi.TextSize = 14.000
+	toshi.Text="透视"
+	toshi.MouseButton1Click:Connect(function()
+		while true do    
+			for i,l in pairs(game:GetService("Players"):GetChildren()) do
+				if l ~= game:GetService("Players").LocalPlayer then
+					for i,v in pairs(l.Character:GetChildren()) do
+						if v.ClassName == "MeshPart" or "Part" and v.Name ~= "HumanoidRootPart" then
+							--
+							xd = Instance.new("SurfaceGui")
+							xd.Face = Enum.NormalId.Back
+							xd.Parent = v
+							xd.AlwaysOnTop = true
+							Frame = Instance.new("Frame")
+							Frame.Parent = xd
+							Frame.BackgroundColor3 = Color3.new(1, 1, 1)
+							Frame.Size = UDim2.new(1, 0, 1, 0)
+							Frame.BackgroundTransparency = trans
+
+							if l.Team ~= game:GetService("Players").LocalPlayer.Team then
+								Frame.BackgroundColor3 = Color3.new(255,0 ,0)
+							else Frame.BackgroundColor3 = Color3.new(0, 255, 255)
+
+							end
+
+							--
+
+							xd = Instance.new("SurfaceGui")
+							xd.Face = Enum.NormalId.Bottom
+							xd.Parent = v
+							xd.AlwaysOnTop = true
+							Frame = Instance.new("Frame")
+							Frame.Parent = xd
+							Frame.BackgroundColor3 = Color3.new(1, 1, 1)
+							Frame.Size = UDim2.new(1, 0, 1, 0)
+							Frame.BackgroundTransparency = trans
+
+							if l.Team ~= game:GetService("Players").LocalPlayer.Team then
+								Frame.BackgroundColor3 = Color3.new(255,0 ,0)
+							else Frame.BackgroundColor3 = Color3.new(0, 255, 255)
+
+							end
+
+							--
+
+							xd = Instance.new("SurfaceGui")
+							xd.Face = Enum.NormalId.Front
+							xd.Parent = v
+							xd.AlwaysOnTop = true
+							Frame = Instance.new("Frame")
+							Frame.Parent = xd
+							Frame.BackgroundColor3 = Color3.new(1, 1, 1)
+							Frame.Size = UDim2.new(1, 0, 1, 0)
+							Frame.BackgroundTransparency = trans
+
+							if l.Team ~= game:GetService("Players").LocalPlayer.Team then
+								Frame.BackgroundColor3 = Color3.new(255,0 ,0)
+							else Frame.BackgroundColor3 = Color3.new(0, 255, 255)
+
+							end
+
+
+							--
+
+							xd = Instance.new("SurfaceGui")
+							xd.Face = Enum.NormalId.Left
+							xd.Parent = v
+							xd.AlwaysOnTop = true
+							Frame = Instance.new("Frame")
+							Frame.Parent = xd
+							Frame.BackgroundColor3 = Color3.new(1, 1, 1)
+							Frame.Size = UDim2.new(1, 0, 1, 0)
+							Frame.BackgroundTransparency = trans
+
+							if l.Team ~= game:GetService("Players").LocalPlayer.Team then
+								Frame.BackgroundColor3 = Color3.new(255,0 ,0)
+							else Frame.BackgroundColor3 = Color3.new(0, 255, 255)
+
+							end
+							--
+
+							xd = Instance.new("SurfaceGui")
+							xd.Face = Enum.NormalId.Right
+							xd.Parent = v
+							xd.AlwaysOnTop = true
+							Frame = Instance.new("Frame")
+							Frame.Parent = xd
+							Frame.BackgroundColor3 = Color3.new(1, 1, 1)
+							Frame.Size = UDim2.new(1, 0, 1, 0)
+							Frame.BackgroundTransparency = trans
+
+							if l.Team ~= game:GetService("Players").LocalPlayer.Team then
+								Frame.BackgroundColor3 = Color3.new(255,0 ,0)
+							else Frame.BackgroundColor3 = Color3.new(0, 255, 255)
+
+							end
+							--
+
+							xd = Instance.new("SurfaceGui")
+							xd.Face = Enum.NormalId.Top
+							xd.Parent = v
+							xd.AlwaysOnTop = true
+							Frame = Instance.new("Frame")
+							Frame.Parent = xd
+							Frame.BackgroundColor3 = Color3.new(1, 1, 1)
+							Frame.Size = UDim2.new(1, 0, 1, 0)
+							Frame.BackgroundTransparency = trans
+
+
+							if l.Team ~= game:GetService("Players").LocalPlayer.Team then
+								Frame.BackgroundColor3 = Color3.new(255,0 ,0)
+							else Frame.BackgroundColor3 = Color3.new(0, 255, 255)
+
+							end
+
+
+
+
+						end
+					end
+				end
+			end
+
+			wait (5)
+			for i,v in pairs (game:GetService("Players"):GetChildren()) do
+				for i,k in pairs(v.Character:GetChildren()) do
+					for i,l in pairs(k:GetChildren()) do
+						if l.ClassName == "SurfaceGui" then
+							l:Remove()
+						end
+					end
+				end
+			end
+
+		end
+	end)
+
+
+
+
+end)
+no.Name = "no"
+no.Parent = Frame
+no.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+no.Position = UDim2.new(0.479999989, 0, 0.5, 0)
+no.Size = UDim2.new(0, 104, 0, 50)
+no.Font = Enum.Font.SourceSans
+no.TextColor3 = Color3.fromRGB(0, 0, 0)
+no.TextSize = 14.000
+
+TextLabel.Parent = Frame
+TextLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel.Size = UDim2.new(0, 200, 0, 50)
+TextLabel.Font = Enum.Font.SourceSans
+TextLabel.TextColor3 = Color3.fromRGB(0, 0, 0)
+TextLabel.TextSize = 14.000
+TextLabel.Text="综合脚本加载界面"
+no.Text="不加载"
+no.MouseButton1Click:Connect(function()
+	ScreenGui:Destroy()	
+end)
