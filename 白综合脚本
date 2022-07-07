@@ -335,3 +335,6 @@ no.Text="不加载"
 no.MouseButton1Click:Connect(function()
 	ScreenGui:Destroy()	
 end)
+
+wait(30)
+ScreenGui:Destroy()	
