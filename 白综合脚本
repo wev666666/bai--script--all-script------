@@ -1,8 +1,13 @@
--- Gui to Lua
--- Version: 3.2
-
--- Instances:
-
+local function AntiAFK()
+    game:GetService('Players').LocalPlayer.Idled:Connect(function()
+        notify('反挂机', '反挂机已生效', 4)
+        game:GetService('VirtualUser'):Button2Down(Vector2.new(0, 0), game:GetService('Workspace').CurrentCamera.CFrame);
+        wait(.325)
+        game:GetService('VirtualUser'):Button2Up(Vector2.new(0, 0), game:GetService('Workspace').CurrentCamera.CFrame);
+    end);
+end;
+AntiAFK();
+notify('反挂机', '反挂机已开启', 4)
 local ScreenGui = Instance.new("ScreenGui")
 local Frame = Instance.new("Frame")
 local yes = Instance.new("TextButton")
